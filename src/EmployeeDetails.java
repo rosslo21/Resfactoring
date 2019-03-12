@@ -63,8 +63,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
 	// hold file name and path for current file in use
 	private File file;
-	// holds true or false if any changes are made for text fields
-	private  boolean change = false;
+	// holds true or false if any changes are made for text                fields
+	private boolean change = false;
 	// holds true or false if any changes are made for file content
 	boolean changesMade = false;
 	private JMenuItem open, save, saveAs, create, modify, delete, firstItem, lastItem, nextItem, prevItem, searchById,
