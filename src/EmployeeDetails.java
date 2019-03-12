@@ -65,7 +65,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private File file;
 	// holds true or false if any changes are made for text                fields
 	private boolean change = false;
-	// holds true or false if any changes are made for file content
+	// holds true or false if any chan     ges are made for file content
 	boolean changesMade = false;
 	private JMenuItem open, save, saveAs, create, modify, delete, firstItem, lastItem, nextItem, prevItem, searchById,
 			searchBySurname, listAll, closeApp;
