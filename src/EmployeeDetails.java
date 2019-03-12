@@ -653,7 +653,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 	// check for correct PPS format and look if PPS already in use
 	public boolean correctPps(String pps, long currentByte) {
-		boolean ppsExist = true;
+		boolean ppsExist = false;
 		// check for correct PPS format based on assignment description
 		if (pps.length() == 7) {
 			if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1))
@@ -981,76 +981,73 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// create file
 		application.createFile(file.getName());
 	}// end createRandomFile
-
-	// action listener for buttons, text field and menu items
+	
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource() == closeApp) {
-			if (checkInput() && !checkForChanges())
-				exitApp();
-		} else if (e.getSource() == open) {
-			if (checkInput() && !checkForChanges())
-				openFile();
-		} else if (e.getSource() == save) {
-			if (checkInput() && !checkForChanges())
-				saveFile();
-			change = false;
-		} else if (e.getSource() == saveAs) {
-			if (checkInput() && !checkForChanges())
-				saveFileAs();
-			change = false;
-		} else if (e.getSource() == searchById) {
-			if (checkInput() && !checkForChanges())
-				displaySearchByIdDialog();
-		} else if (e.getSource() == searchBySurname) {
-			if (checkInput() && !checkForChanges())
-				displaySearchBySurnameDialog();
-		} else if (e.getSource() == searchId || e.getSource() == searchByIdField)
+		if (e.getSource() == searchId || e.getSource() == searchByIdField)
 			searchEmployeeById();
 		else if (e.getSource() == searchSurname || e.getSource() == searchBySurnameField)
 			searchEmployeeBySurname();
-		else if (e.getSource() == saveChange) {
-			if (checkInput() && !checkForChanges())
-				;
-		} else if (e.getSource() == cancelChange)
+		else if (e.getSource() == cancelChange)
 			cancelChange();
-		else if (e.getSource() == firstItem || e.getSource() == first) {
-			if (checkInput() && !checkForChanges()) {
+		else if (checkInput() && !checkForChanges()) {
+			if (e.getSource() == closeApp) {
+				exitApp();
+			}
+			else if (e.getSource() == open) {
+				openFile();
+			}
+			else if (e.getSource() == save) {
+				saveFile();
+				change = false;
+			}
+			else if (e.getSource() == saveAs) {
+				saveFileAs();
+				change = false;
+			}
+			else if (e.getSource() == searchById) {
+				displaySearchByIdDialog();
+			}
+			else if (e.getSource() == searchBySurname) {
+				displaySearchBySurnameDialog();
+			}
+			else if (e.getSource() == saveChange) {
+				;
+			}
+			else if (e.getSource() == firstItem || e.getSource() == first) {
 				firstRecord();
 				displayRecords(currentEmployee);
 			}
-		} else if (e.getSource() == prevItem || e.getSource() == previous) {
-			if (checkInput() && !checkForChanges()) {
+			else if (e.getSource() == prevItem || e.getSource() == previous) {
 				previousRecord();
 				displayRecords(currentEmployee);
 			}
-		} else if (e.getSource() == nextItem || e.getSource() == next) {
-			if (checkInput() && !checkForChanges()) {
+			else if (e.getSource() == nextItem || e.getSource() == next) {
 				nextRecord();
 				displayRecords(currentEmployee);
 			}
-		} else if (e.getSource() == lastItem || e.getSource() == last) {
-			if (checkInput() && !checkForChanges()) {
+			else if (e.getSource() == lastItem || e.getSource() == last) {
 				lastRecord();
 				displayRecords(currentEmployee);
 			}
-		} else if (e.getSource() == listAll || e.getSource() == displayAll) {
-			if (checkInput() && !checkForChanges())
+			else if (e.getSource() == listAll || e.getSource() == displayAll) {
 				if (isSomeoneToDisplay())
 					displayEmployeeSummaryDialog();
-		} else if (e.getSource() == create || e.getSource() == add) {
-			if (checkInput() && !checkForChanges())
+			}
+			else if (e.getSource() == create || e.getSource() == add) {
 				new AddRecordDialog(EmployeeDetails.this);
-		} else if (e.getSource() == modify || e.getSource() == edit) {
-			if (checkInput() && !checkForChanges())
+			}
+			else if (e.getSource() == modify || e.getSource() == edit) {
 				editDetails();
-		} else if (e.getSource() == delete || e.getSource() == deleteButton) {
-			if (checkInput() && !checkForChanges())
+			}
+			else if (e.getSource() == delete || e.getSource() == deleteButton) {
 				deleteRecord();
-		} else if (e.getSource() == searchBySurname) {
-			if (checkInput() && !checkForChanges())
+			}
+			else if (e.getSource() == searchBySurname) {
 				new SearchBySurnameDialog(EmployeeDetails.this);
+			}
 		}
+		
 	}// end actionPerformed
 
 	// content pane for main dialog
