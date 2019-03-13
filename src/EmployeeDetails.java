@@ -575,7 +575,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				if (isSomeoneToDisplay()) {
 					nextRecord();// look for next record
 					displayRecords(currentEmployee);
-				} // end if
+				} 
+				else 
+					change = false;// end if
 			} // end if
 		} // end if
 	}// end deleteDecord
