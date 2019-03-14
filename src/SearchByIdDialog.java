@@ -42,7 +42,7 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 		setVisible(true);
 	}// end SearchByIdDialog
 	
-	// initialize se   arch container
+	// initialize search container
 	public Container searchPane() {
 		JPanel searchPanel = new JPanel(new GridLayout(3, 1));
 		JPanel textPanel = new JPanel();

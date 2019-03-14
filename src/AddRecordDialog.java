@@ -27,6 +27,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
 	JButton save, cancel;
 	EmployeeDetails parent;
+	DisplayEmployeeDetails dr;
 	// constructor for add reco  rd dialog
 	public AddRecordDialog(EmployeeDetails parent) {
 		setTitle("Add Record");
@@ -118,7 +119,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 				departmentCombo.getSelectedItem().toString(), Double.parseDouble(salaryField.getText()), fullTime);
 		this.parent.currentEmployee = theEmployee;
 		this.parent.addRecord(theEmployee);
-		this.parent.displayRecords(theEmployee);
+		dr.displayRecords(theEmployee);
 	}
 
 	// check for input in text fields
