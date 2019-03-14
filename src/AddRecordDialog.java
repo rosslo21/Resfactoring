@@ -119,7 +119,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 				departmentCombo.getSelectedItem().toString(), Double.parseDouble(salaryField.getText()), fullTime);
 		this.parent.currentEmployee = theEmployee;
 		this.parent.addRecord(theEmployee);
-		dr.displayRecords(theEmployee);
+		this.parent.displayRecords(theEmployee);
 	}
 
 	// check for input in text fields

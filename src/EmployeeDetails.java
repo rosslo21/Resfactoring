@@ -297,7 +297,66 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		} // end for
 		return empDetails;
 	}// end detailsPanel
+	// display current Employee details
+		
+	
+	public void displayRecords(Employee thisEmployee) {
+				int countGender = 0;
+				int countDep = 0;
+				boolean found = false;
 
+				searchByIdField.setText("");
+				searchBySurnameField.setText("");
+				// if Employee is null or ID is 0 do nothing else display Employee
+				// details
+				if (thisEmployee != null && thisEmployee.getEmployeeId() != 0) {
+				
+					// find corresponding gender combo box value to current employee
+					while (!found && countGender < gender.length - 1) {
+						if (Character.toString(thisEmployee.getGender()).equalsIgnoreCase(gender[countGender]))
+							found = true;
+						else
+							countGender++;
+					} // end while
+					found = false;
+					// find corresponding department combo box value to current employee
+					while (!found && countDep < department.length - 1) {
+						if (thisEmployee.getDepartment().trim().equalsIgnoreCase(department[countDep]))
+							found = true;
+						else
+							countDep++;
+					} // end while
+					idField.setText(Integer.toString(thisEmployee.getEmployeeId()));
+					ppsField.setText(thisEmployee.getPps().trim());
+					surnameField.setText(thisEmployee.getSurname().trim());
+					firstNameField.setText(thisEmployee.getFirstName());
+					genderCombo.setSelectedIndex(countGender);
+					departmentCombo.setSelectedIndex(countDep);
+					salaryField.setText(format.format(thisEmployee.getSalary()));
+					// set corresponding full time combo box value to current employee
+					if (thisEmployee.getFullTime() == true)
+						fullTimeCombo.setSelectedIndex(1);
+					else
+						fullTimeCombo.setSelectedIndex(2);
+				}
+				else {
+					
+				}
+					
+				change = false;
+			}// end display records
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// display Employee summary dialog
 	private void displayEmployeeSummaryDialog() {
 		// display Employee summary dialog if these is someone to display
@@ -408,7 +467,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 					found = true;
 				else if (searchByIdField.getText().trim().equals(Integer.toString(currentEmployee.getEmployeeId()))) {
 					found = true;
-				dr.displayRecords(currentEmployee);
+				displayRecords(currentEmployee);
 				
 				} // end else if
 				else {
@@ -420,7 +479,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 						// else look for next record
 						if (Integer.parseInt(searchByIdField.getText().trim()) == currentEmployee.getEmployeeId()) {
 							found = true;
-							dr.displayRecords(currentEmployee);
+							displayRecords(currentEmployee);
 							break;
 						} else
 							nextRecord();// look for next record
@@ -452,7 +511,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				found = true;
 			else if (searchBySurnameField.getText().trim().equalsIgnoreCase(currentEmployee.getSurname().trim())) {
 				found = true;
-				dr.displayRecords(currentEmployee);
+				displayRecords(currentEmployee);
 			} // end else if
 			else {
 				nextRecord();// look for next record
@@ -463,7 +522,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 					// else look for next record
 					if (searchBySurnameField.getText().trim().equalsIgnoreCase(currentEmployee.getSurname().trim())) {
 						found = true;
-						dr.displayRecords(currentEmployee);
+						displayRecords(currentEmployee);
 						break;
 					} // end if
 					else
@@ -532,7 +591,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				// if any active record in file display next record
 				if (isSomeoneToDisplay()) {
 					nextRecord();// look for next record
-					dr.displayRecords(currentEmployee);
+					displayRecords(currentEmployee);
 				} 
 				else 
 					change = false;// end if
@@ -584,7 +643,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	// ignore changes and set text field unenabled
 	private void cancelChange() {
 		setEnabled(false);
-		dr.displayRecords(currentEmployee);
+		displayRecords(currentEmployee);
 	}// end cancelChange
 
 	// check if any of records in file is active - ID is not 0
@@ -615,19 +674,20 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	public boolean correctPps(String pps, long currentByte) {
 		boolean ppsExist = false;
 		// check for correct PPS format based on assignment description
-		if (pps.length() == 7) {
-			if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1))
-					&& Character.isDigit(pps.charAt(2))	&& Character.isDigit(pps.charAt(3)) 
-					&& Character.isDigit(pps.charAt(4)) 
-					&& Character.isDigit(pps.charAt(5))	&& Character.isLetter(pps.charAt(6))) {
+	
+			if (pps.length() == 7 && pps.matches("[0-9]{6}[A-Za-z]")){
+//					&& Character.isDigit(pps.charAt(2))	&& Character.isDigit(pps.charAt(3)) 
+//					&& Character.isDigit(pps.charAt(4)) 
+//					&& Character.isDigit(pps.charAt(5))	&& Character.isLetter(pps.charAt(6)))
+					{
 				// open file for reading
 				application.openReadFile(file.getAbsolutePath());
 				// look in file is PPS already in use
 				ppsExist = application.isPpsExist(pps, currentByte);
 				application.closeReadFile();// close file for reading
 			} // end if
-			else
-				ppsExist = true;
+			//else
+				//ppsExist = true;
 		} // end if
 		else
 			ppsExist = true;
@@ -659,7 +719,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			// current Employee
 		else {
 			setEnabled(false);
-			dr.displayRecords(currentEmployee);
+		displayRecords(currentEmployee);
 		} // end else
 
 		return anyChanges;
@@ -785,7 +845,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			// open file for reading
 			application.openReadFile(file.getAbsolutePath());
 			firstRecord();// look for first record
-			dr.displayRecords(currentEmployee);
+			displayRecords(currentEmployee);
 			application.closeReadFile();// close file for reading
 		} // end if
 	}// end openFile
@@ -818,7 +878,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				} // end if
 			} // end if
 
-			dr.displayRecords(currentEmployee);
+			displayRecords(currentEmployee);
 			setEnabled(false);
 		} // end else
 	}// end saveFile
@@ -838,7 +898,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			application.closeWriteFile();// close file for writing
 			changesMade = false;// state that all changes has bee saved
 		} // end if
-		dr.displayRecords(currentEmployee);
+		displayRecords(currentEmployee);
 		setEnabled(false);
 	}// end saveChanges
 
@@ -976,19 +1036,19 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			}
 			else if (e.getSource() == firstItem || e.getSource() == first) {
 				firstRecord();
-				dr.displayRecords(currentEmployee);
+				displayRecords(currentEmployee);
 			}
 			else if (e.getSource() == prevItem || e.getSource() == previous) {
 				previousRecord();
-				dr.displayRecords(currentEmployee);
+				displayRecords(currentEmployee);
 			}
 			else if (e.getSource() == nextItem || e.getSource() == next) {
 				nextRecord();
-				dr.displayRecords(currentEmployee);
+				displayRecords(currentEmployee);
 			}
 			else if (e.getSource() == lastItem || e.getSource() == last) {
 				lastRecord();
-				dr.displayRecords(currentEmployee);
+				displayRecords(currentEmployee);
 			}
 			else if (e.getSource() == listAll || e.getSource() == displayAll) {
 				if (isSomeoneToDisplay())
