@@ -606,7 +606,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			genderCombo.setSelectedIndex(0);
 			departmentCombo.setSelectedIndex(0);
 			fullTimeCombo.setSelectedIndex(0);
-			JOptionPane.showMessageDialog(null, "No Employees registered!");
+			
 		}
 		return someoneToDisplay;
 	}// end isSomeoneToDisplay
@@ -993,6 +993,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			else if (e.getSource() == listAll || e.getSource() == displayAll) {
 				if (isSomeoneToDisplay())
 					displayEmployeeSummaryDialog();
+				else {
+					JOptionPane.showMessageDialog(null, "No Employees registered!");
+				}
 			}
 			else if (e.getSource() == create || e.getSource() == add) {
 				new AddRecordDialog(EmployeeDetails.this);
