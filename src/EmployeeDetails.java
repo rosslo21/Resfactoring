@@ -151,7 +151,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		JPanel searchPanel = new JPanel(new MigLayout());
 
 		searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
-		searchPanel.add(new JLabel("Search by ID:"), "growx, pushx");
+		searchPanel.add(new JLabel("Search by ID:"), Miglayout_Manager.miglayout1);
 		searchPanel.add(searchByIdField = new JTextField(20), "width 200:200:200, growx, pushx");
 		searchByIdField.addActionListener(this);
 		searchByIdField.setDocument(new JTextFieldLimit(20));
@@ -161,7 +161,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchId.addActionListener(this);
 		searchId.setToolTipText("Search Employee By ID");
 
-		searchPanel.add(new JLabel("Search by Surname:"), "growx, pushx");
+		searchPanel.add(new JLabel("Search by Surname:"), Miglayout_Manager.miglayout1);
 		searchPanel.add(searchBySurnameField = new JTextField(20), "width 200:200:200, growx, pushx");
 		searchBySurnameField.addActionListener(this);
 		searchBySurnameField.setDocument(new JTextFieldLimit(20));
@@ -210,16 +210,16 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private JPanel buttonPanel() {
 		JPanel buttonPanel = new JPanel();
 
-		buttonPanel.add(add = new JButton("Add Record"), "growx, pushx");
+		buttonPanel.add(add = new JButton("Add Record"),Miglayout_Manager.miglayout1);
 		add.addActionListener(this);
 		add.setToolTipText("Add new Employee Record");
-		buttonPanel.add(edit = new JButton("Edit Record"), "growx, pushx");
+		buttonPanel.add(edit = new JButton("Edit Record"), Miglayout_Manager.miglayout1);
 		edit.addActionListener(this);
 		edit.setToolTipText("Edit current Employee");
-		buttonPanel.add(deleteButton = new JButton("Delete Record"), "growx, pushx, wrap");
+		buttonPanel.add(deleteButton = new JButton("Delete Record"), Miglayout_Manager.miglayout2);
 		deleteButton.addActionListener(this);
 		deleteButton.setToolTipText("Delete current Employee");
-		buttonPanel.add(displayAll = new JButton("List all Records"), "growx, pushx");
+		buttonPanel.add(displayAll = new JButton("List all Records"), Miglayout_Manager.miglayout1);
 		displayAll.addActionListener(this);
 		displayAll.setToolTipText("List all Registered Employees");
 
@@ -234,30 +234,30 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 		empDetails.setBorder(BorderFactory.createTitledBorder("Employee Details"));
 
-		empDetails.add(new JLabel("ID:"), "growx, pushx");
-		empDetails.add(idField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("ID:"), Miglayout_Manager.miglayout1);
+		empDetails.add(idField = new JTextField(20), Miglayout_Manager.miglayout2);
 		idField.setEditable(false);
 
-		empDetails.add(new JLabel("PPS Number:"), "growx, pushx");
-		empDetails.add(ppsField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("PPS Number:"), Miglayout_Manager.miglayout1);
+		empDetails.add(ppsField = new JTextField(20), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("Surname:"), "growx, pushx");
-		empDetails.add(surnameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Surname:"), Miglayout_Manager.miglayout1);
+		empDetails.add(surnameField = new JTextField(20), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("First Name:"), "growx, pushx");
-		empDetails.add(firstNameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("First Name:"), Miglayout_Manager.miglayout1);
+		empDetails.add(firstNameField = new JTextField(20), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("Gender:"), "growx, pushx");
-		empDetails.add(genderCombo = new JComboBox<String>(gender), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Gender:"), Miglayout_Manager.miglayout1);
+		empDetails.add(genderCombo = new JComboBox<String>(gender), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("Department:"), "growx, pushx");
-		empDetails.add(departmentCombo = new JComboBox<String>(department), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Department:"), Miglayout_Manager.miglayout1);
+		empDetails.add(departmentCombo = new JComboBox<String>(department),Miglayout_Manager.miglayout2 );
 
-		empDetails.add(new JLabel("Salary:"), "growx, pushx");
-		empDetails.add(salaryField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Salary:"), Miglayout_Manager.miglayout1);
+		empDetails.add(salaryField = new JTextField(20), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("Full Time:"), "growx, pushx");
-		empDetails.add(fullTimeCombo = new JComboBox<String>(fullTime), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Full Time:"), Miglayout_Manager.miglayout1);
+		empDetails.add(fullTimeCombo = new JComboBox<String>(fullTime), Miglayout_Manager.miglayout2);
 
 		buttonPanel.add(saveChange = new JButton("Save"));
 		saveChange.addActionListener(this);
@@ -268,7 +268,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		cancelChange.setVisible(false);
 		cancelChange.setToolTipText("Cancel edit");
 
-		empDetails.add(buttonPanel, "span 2,growx, pushx,wrap");
+		empDetails.add(buttonPanel, Miglayout_Manager.miglayout3);
 
 		// loop through panel components and add listeners and format
 		for (int i = 0; i < empDetails.getComponentCount(); i++) {
@@ -283,13 +283,13 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				field.getDocument().addDocumentListener(this);
 			} // end if
 			else if (empDetails.getComponent(i) instanceof JComboBox) {
-				empDetails.getComponent(i).setBackground(Color.WHITE);
+				empDetails.getComponent(i).setBackground(Color_Class.white);
 				empDetails.getComponent(i).setEnabled(false);
 				((JComboBox<String>) empDetails.getComponent(i)).addItemListener(this);
 				((JComboBox<String>) empDetails.getComponent(i)).setRenderer(new DefaultListCellRenderer() {
 					// set foregroung to combo boxes
 					public void paint(Graphics g) {
-						setForeground(new Color(65, 65, 65));
+						setForeground(Color_Class.foreground);
 						super.paint(g);
 					}// end paint
 				});
@@ -491,10 +491,10 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			} // end if
 		} // end try
 		catch (NumberFormatException e) {
-			searchByIdField.setBackground(new Color(255, 150, 150));
+			searchByIdField.setBackground(Color_Class.red);
 			JOptionPane.showMessageDialog(null, "Wrong ID format!");
 		} // end catch
-		searchByIdField.setBackground(Color.WHITE);
+		searchByIdField.setBackground(Color_Class.white);
 		searchByIdField.setText("");
 	}// end searchEmployeeByID
 
@@ -731,45 +731,45 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// if any of inputs are in wrong format, colour text field and display
 		// message
 		if (ppsField.isEditable() && ppsField.getText().trim().isEmpty()) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(Color_Class.red);
 			valid = false;
 		} // end if
 		if (ppsField.isEditable() && correctPps(ppsField.getText().trim(), currentByteStart)) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(Color_Class.red);
 			valid = false;
 		} // end if
 		if (surnameField.isEditable() && surnameField.getText().trim().isEmpty()) {
-			surnameField.setBackground(new Color(255, 150, 150));
+			surnameField.setBackground(Color_Class.red);
 			valid = false;
 		} // end if
 		if (firstNameField.isEditable() && firstNameField.getText().trim().isEmpty()) {
-			firstNameField.setBackground(new Color(255, 150, 150));
+			firstNameField.setBackground(Color_Class.red);
 			valid = false;
 		} // end if
 		if (genderCombo.getSelectedIndex() == 0 && genderCombo.isEnabled()) {
-			genderCombo.setBackground(new Color(255, 150, 150));
+			genderCombo.setBackground(Color_Class.red);
 			valid = false;
 		} // end if
 		if (departmentCombo.getSelectedIndex() == 0 && departmentCombo.isEnabled()) {
-			departmentCombo.setBackground(new Color(255, 150, 150));
+			departmentCombo.setBackground(Color_Class.red);
 			valid = false;
 		} // end if
 		try {// try to get values from text field
 			Double.parseDouble(salaryField.getText());
 			// check if salary is greater than 0
 			if (Double.parseDouble(salaryField.getText()) < 0) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(Color_Class.red);
 				valid = false;
 			} // end if
 		} // end try
 		catch (NumberFormatException num) {
 			if (salaryField.isEditable()) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(Color_Class.red);
 				valid = false;
 			} // end if
 		} // end catch
 		if (fullTimeCombo.getSelectedIndex() == 0 && fullTimeCombo.isEnabled()) {
-			fullTimeCombo.setBackground(new Color(255, 150, 150));
+			fullTimeCombo.setBackground(Color_Class.red);
 			valid = false;
 		} // end if
 			// display message if any input or format is wrong
@@ -1085,7 +1085,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// add navigation panel to frame
 		dialog.add(navigPanel(), "width 150:150:150, wrap");
 		// add button panel to frame
-		dialog.add(buttonPanel(), "growx, pushx, span 2,wrap");
+		dialog.add(buttonPanel(), Miglayout_Manager.miglayout3);
 		// add details panel to frame
 		dialog.add(detailsPanel(), "gap top 30, gap left 150, center");
 

@@ -28,7 +28,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	JButton save, cancel;
 	EmployeeDetails parent;
 	DisplayEmployeeDetails dr;
-	// constructor for add reco  rd dialog
+	// constructor for add record dialog
 	public AddRecordDialog(EmployeeDetails parent) {
 		setTitle("Add Record");
 		setModal(true);
@@ -55,31 +55,31 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 
 		empDetails.setBorder(BorderFactory.createTitledBorder("Employee Details"));
 
-		empDetails.add(new JLabel("ID:"), "growx, pushx");
-		empDetails.add(idField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("ID:"), Miglayout_Manager.miglayout1);
+		empDetails.add(idField = new JTextField(20), Miglayout_Manager.miglayout2);
 		idField.setEditable(false);
 		
 
-		empDetails.add(new JLabel("PPS Number:"), "growx, pushx");
-		empDetails.add(ppsField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("PPS Number:"), Miglayout_Manager.miglayout1);
+		empDetails.add(ppsField = new JTextField(20), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("Surname:"), "growx, pushx");
-		empDetails.add(surnameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Surname:"), Miglayout_Manager.miglayout1);
+		empDetails.add(surnameField = new JTextField(20), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("First Name:"), "growx, pushx");
-		empDetails.add(firstNameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("First Name:"), Miglayout_Manager.miglayout1);
+		empDetails.add(firstNameField = new JTextField(20), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("Gender:"), "growx, pushx");
-		empDetails.add(genderCombo = new JComboBox<String>(this.parent.gender), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Gender:"), Miglayout_Manager.miglayout1);
+		empDetails.add(genderCombo = new JComboBox<String>(this.parent.gender), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("Department:"), "growx, pushx");
-		empDetails.add(departmentCombo = new JComboBox<String>(this.parent.department), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Department:"), Miglayout_Manager.miglayout1);
+		empDetails.add(departmentCombo = new JComboBox<String>(this.parent.department), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("Salary:"), "growx, pushx");
-		empDetails.add(salaryField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Salary:"), Miglayout_Manager.miglayout1);
+		empDetails.add(salaryField = new JTextField(20), Miglayout_Manager.miglayout2);
 
-		empDetails.add(new JLabel("Full Time:"), "growx, pushx");
-		empDetails.add(fullTimeCombo = new JComboBox<String>(this.parent.fullTime), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Full Time:"), Miglayout_Manager.miglayout1);
+		empDetails.add(fullTimeCombo = new JComboBox<String>(this.parent.fullTime), Miglayout_Manager.miglayout2);
 
 		buttonPanel.add(save = new JButton("Save"));
 		save.addActionListener(this);
@@ -87,12 +87,12 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		buttonPanel.add(cancel = new JButton("Cancel"));
 		cancel.addActionListener(this);
 
-		empDetails.add(buttonPanel, "span 2,growx, pushx,wrap");
+		empDetails.add(buttonPanel,Miglayout_Manager.miglayout3 );
 		// loop through all panel components and add fonts and listeners
 		for (int i = 0; i < empDetails.getComponentCount(); i++) {
 			empDetails.getComponent(i).setFont(this.parent.font1);
 			if (empDetails.getComponent(i) instanceof JComboBox) {
-				empDetails.getComponent(i).setBackground(Color.WHITE);
+				empDetails.getComponent(i).setBackground(Color_Class.white);
 			}// end if
 			else if(empDetails.getComponent(i) instanceof JTextField){
 				field = (JTextField) empDetails.getComponent(i);
@@ -127,43 +127,43 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		boolean valid = true;
 		// if any of inputs are in wrong format, colour text field and display message
 		if (ppsField.getText().equals("")) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(Color_Class.red);
 			valid = false;
 		}// end if
 		if (this.parent.correctPps(this.ppsField.getText().trim(), -1)) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(Color_Class.red);
 			valid = false;
 		}// end if
 		if (surnameField.getText().isEmpty()) {
-			surnameField.setBackground(new Color(255, 150, 150));
+			surnameField.setBackground(Color_Class.red);
 			valid = false;
 		}// end if
 		if (firstNameField.getText().isEmpty()) {
-			firstNameField.setBackground(new Color(255, 150, 150));
+			firstNameField.setBackground(Color_Class.red);
 			valid = false;
 		}// end if
 		if (genderCombo.getSelectedIndex() == 0) {
-			genderCombo.setBackground(new Color(255, 150, 150));
+			genderCombo.setBackground(Color_Class.red);
 			valid = false;
 		}// end if
 		if (departmentCombo.getSelectedIndex() == 0) {
-			departmentCombo.setBackground(new Color(255, 150, 150));
+			departmentCombo.setBackground(Color_Class.red);
 			valid = false;
 		}// end if
 		try {// try to get values from text field
 			Double.parseDouble(salaryField.getText());
 			// check if salary is greater than 0
 			if (Double.parseDouble(salaryField.getText()) < 0) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(Color_Class.red);
 				valid = false;
 			}// end if
 		}// end try
 		catch (NumberFormatException num) {
-			salaryField.setBackground(new Color(255, 150, 150));
+			salaryField.setBackground(Color_Class.red);
 			valid = false;
 		}// end catch
 		if (fullTimeCombo.getSelectedIndex() == 0) {
-			fullTimeCombo.setBackground(new Color(255, 150, 150));
+			fullTimeCombo.setBackground(Color_Class.red);
 			valid = false;
 		}// end if
 		return valid;
@@ -171,13 +171,13 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 
 	// set text field to white colour
 	public void setToWhite() {
-		ppsField.setBackground(Color.WHITE);
-		surnameField.setBackground(Color.WHITE);
-		firstNameField.setBackground(Color.WHITE);
-		salaryField.setBackground(Color.WHITE);
-		genderCombo.setBackground(Color.WHITE);
-		departmentCombo.setBackground(Color.WHITE);
-		fullTimeCombo.setBackground(Color.WHITE);
+		ppsField.setBackground(Color_Class.white);
+		surnameField.setBackground(Color_Class.white);
+		firstNameField.setBackground(Color_Class.white);
+		salaryField.setBackground(Color_Class.white);
+		genderCombo.setBackground(Color_Class.white);
+		departmentCombo.setBackground(Color_Class.white);
+		fullTimeCombo.setBackground(Color_Class.white);
 	}// end setToWhite
 
 	// action performed
