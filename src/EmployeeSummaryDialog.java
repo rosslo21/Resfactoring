@@ -52,22 +52,17 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JTable employeeTable;
 		DefaultTableModel tableModel;
-		// column center alignment
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		// column left alignment 
 		DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
 		Vector<String> header = new Vector<String>();
-		// header names
 		String[] headerName = { "ID", "PPS Number", "Surname", "First Name", "Gender", "Department", "Salary",
 				"Full Time" };
-		// column widths
 		int[] colWidth = { 15, 100, 120, 120, 50, 120, 80, 80 };
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		leftRenderer.setHorizontalAlignment(JLabel.LEFT);
-		// add headers
 		for (int i = 0; i < headerName.length; i++) {
 			header.addElement(headerName[i]);
-		}// end for
+		}
 		// construnct table and choose table model for each column
 		tableModel = new DefaultTableModel(this.allEmployees, header) {
 			public Class getColumnClass(int c) {
@@ -82,15 +77,15 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 					return Boolean.class;
 				default:
 					return String.class;
-				}// end switch
-			}// end getColumnClass
+				}
+			}
 		};
 
 		employeeTable = new JTable(tableModel);
 		// add header names to table
 		for (int i = 0; i < employeeTable.getColumnCount(); i++) {
 			employeeTable.getColumn(headerName[i]).setMinWidth(colWidth[i]);
-		}// end for
+		}
 		// set alignments
 		employeeTable.getColumnModel().getColumn(0).setCellRenderer(leftRenderer);
 		employeeTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
@@ -110,7 +105,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		scrollPane.setBorder(BorderFactory.createTitledBorder("Employee Details"));
 		
 		return summaryDialog;
-	}// end summaryPane
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == back){
@@ -133,6 +128,6 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 			value = format.format((Number) value);
 
 			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-		}// end getTableCellRendererComponent
-	}// DefaultTableCellRenderer
-}// end class EmployeeSummaryDialog
+		}
+	}
+}

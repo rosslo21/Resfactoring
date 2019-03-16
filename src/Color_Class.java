@@ -24,13 +24,8 @@ import javax.swing.UIManager;
 			this.genderCombo = genderCombo;
 			this.departmentCombo = departmentCombo;
 			this.fullTimeCombo = fullTimeCombo;
-		}// end Employee with details
+		}
 
-		
-		
-		
-		
-		// set text field background colour to white
 			public void setToWhite() {
 			ppsField.setBackground(UIManager.getColor("TextField.background"));
 			surnameField.setBackground(UIManager.getColor("TextField.background"));
@@ -39,12 +34,9 @@ import javax.swing.UIManager;
 			genderCombo.setBackground(UIManager.getColor("TextField.background"));
 			departmentCombo.setBackground(UIManager.getColor("TextField.background"));
 			fullTimeCombo.setBackground(UIManager.getColor("TextField.background"));
-	}// end setToWhite
+	}
 		
 		
-		
-		
-		// set text field to white colour
 		public void setWhite() {		
 			ppsField.setBackground(Color_Class.white);		
 		surnameField.setBackground(Color_Class.white);
@@ -54,7 +46,7 @@ import javax.swing.UIManager;
 			genderCombo.setBackground(Color_Class.white);
 			departmentCombo.setBackground(Color_Class.white);
 			fullTimeCombo.setBackground(Color_Class.white);
-		}// end setToWhite
+		}
 	}
 
 

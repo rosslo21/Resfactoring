@@ -69,7 +69,7 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 		searchPanel.add(buttonPanel);
 
 		return searchPanel;
-	}// end searchPane
+	}
 
 	// action listener for save and cancel button
 	public void actionPerformed(ActionEvent e) {
@@ -87,10 +87,10 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 				// display message and set colour to text field if entry is wrong
 				searchField.setBackground(Color_Class.red);
 				JOptionPane.showMessageDialog(null, "Wrong ID format!");
-			}// end catch
-		}// end if
-		// else dispose dialog
+			}
+		}
+		
 		else if (e.getSource() == cancel)
 			dispose();
-	}// end actionPerformed
-}// end class searchByIdDialog
+	}
+}
