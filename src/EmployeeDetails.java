@@ -53,6 +53,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	public EmployeeDetails() {
 	}
 	DisplayEmployeeDetails dr;
+
 	// decimal format for inactive currency text field
 	public static final DecimalFormat format = new DecimalFormat("\u20ac ###,###,##0.00");
 	// decimal format for active currency text field
@@ -776,22 +777,23 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		if (!valid)
 			JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
 		// set text field to white colour if text fields are editable
-		if (ppsField.isEditable())
-			setToWhite();
-
+		if (ppsField.isEditable()) {
+			Color_Class c = new Color_Class(ppsField, surnameField, firstNameField, salaryField, genderCombo, departmentCombo, fullTimeCombo);	
+			c.setToWhite();
+		}
 		return valid;
 	}
 
-	// set text field background colour to white
-	private void setToWhite() {
-		ppsField.setBackground(UIManager.getColor("TextField.background"));
-		surnameField.setBackground(UIManager.getColor("TextField.background"));
-		firstNameField.setBackground(UIManager.getColor("TextField.background"));
-		salaryField.setBackground(UIManager.getColor("TextField.background"));
-		genderCombo.setBackground(UIManager.getColor("TextField.background"));
-		departmentCombo.setBackground(UIManager.getColor("TextField.background"));
-		fullTimeCombo.setBackground(UIManager.getColor("TextField.background"));
-	}// end setToWhite
+//	// set text field background colour to white
+//	private void setToWhite() {
+//		ppsField.setBackground(UIManager.getColor("TextField.background"));
+//		surnameField.setBackground(UIManager.getColor("TextField.background"));
+//		firstNameField.setBackground(UIManager.getColor("TextField.background"));
+//		salaryField.setBackground(UIManager.getColor("TextField.background"));
+//		genderCombo.setBackground(UIManager.getColor("TextField.background"));
+//		departmentCombo.setBackground(UIManager.getColor("TextField.background"));
+//		fullTimeCombo.setBackground(UIManager.getColor("TextField.background"));
+//	}// end setToWhite
 
 	// enable text fields for editing
 	public void setEnabled(boolean booleanValue) {
